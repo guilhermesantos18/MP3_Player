@@ -18,7 +18,8 @@ janela_principal.geometry('400x600')
 # Menu
 menu = tk.Menu(janela_principal)
 janela_principal.config(menu=menu)
-music_menu = tk.Menu(menu)
+# tearoff remover linha a tracejado
+music_menu = tk.Menu(menu, tearoff=0)
 menu.add_cascade(label='Opções', menu=music_menu)
 music_menu.add_command(label='Pasta Musica', command=abrir_explorador_de_arquivos)
 music_menu.add_command(label='Musica especifíca')
@@ -45,5 +46,4 @@ play_music.pack()
 next_music.pack()
 previous_music.pack()
 
-janela_principal.config(menu=menu)
 janela_principal.mainloop()
