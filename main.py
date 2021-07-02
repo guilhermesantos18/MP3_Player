@@ -1,13 +1,24 @@
 # Biblioteca GUI
 import tkinter as tk
+# Escolher a pasta das musicas
+from tkinter import filedialog
 # Reproduzir a música
 from pygame import mixer
+mixer.init()
 import os
 
+lista_musicas = []
 
-# Abrir explorador de arquivos para escolher a pasta
-def abrir_explorador_de_arquivos():
-    os.popen('explorer')
+
+def tocar_musica():
+    mixer.music.load(lista_musicas[0])
+    mixer.music.play()
+
+
+def escolher_pasta_musica():
+    music_dir = filedialog.askdirectory()
+    for music in os.listdir(music_dir):
+        lista_musicas.append(music)
 
 
 # Interface
@@ -21,7 +32,7 @@ janela_principal.config(menu=menu)
 # tearoff remover linha a tracejado
 music_menu = tk.Menu(menu, tearoff=0)
 menu.add_cascade(label='Opções', menu=music_menu)
-music_menu.add_command(label='Pasta Musica', command=abrir_explorador_de_arquivos)
+music_menu.add_command(label='Pasta Musica', command=escolher_pasta_musica)
 music_menu.add_command(label='Musica especifíca')
 
 # Icones
@@ -35,10 +46,10 @@ icone_previous = tk.PhotoImage(
     file='C:\Programação e Projetos\Linguagens que mais uso e trabalho\Python\projetospython\MP3_Player\Icons\outline_skip_previous_black_24dp.png')
 
 # Criar a Label para icones
-stop_music = tk.Label(janela_principal, image=icone_stop)
-play_music = tk.Label(janela_principal, image=icone_play)
-next_music = tk.Label(janela_principal, image=icone_next)
-previous_music = tk.Label(janela_principal, image=icone_previous)
+stop_music = tk.Button(janela_principal, image=icone_stop, borderwidth=0)
+play_music = tk.Button(janela_principal, image=icone_play, borderwidth=0, command=tocar_musica)
+next_music = tk.Button(janela_principal, image=icone_next, borderwidth=0)
+previous_music = tk.Button(janela_principal, image=icone_previous, borderwidth=0)
 
 # Para visualizar icones na tela e posicioná-los
 stop_music.pack()
