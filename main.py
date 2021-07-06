@@ -18,7 +18,8 @@ def tocar_musica():
 def escolher_pasta_musica():
     music_dir = filedialog.askdirectory()
     for music in os.listdir(music_dir):
-        lista_musicas.append(music)
+        lista_musicas.append(music_dir + '/' + music)
+    print(lista_musicas)
 
 
 # Interface
