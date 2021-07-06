@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import filedialog
 # Reproduzir a música
 from pygame import mixer
+
 mixer.init()
 import os
 
